@@ -1,0 +1,59 @@
+@use "../../scss" as *;
+
+.movie__list {
+    margin-bottom: 50px;
+    overflow: hidden;
+
+    .movie-top {
+        margin-bottom: 30px;
+        padding: 20px 0;
+        @include flex(center, space-between);
+        .list__title {
+            font-size: 3rem;
+            font-weight: bold;
+            @include tablet {
+                font-size: 2.5rem;
+            }
+
+            @include mobile {
+                font-size: 1.8rem;
+            }
+        }
+    }
+    .list__cards {
+        &-grid {
+            display: grid;
+            gap: 30px;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            @include tablet {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+            @include mobile {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+        }
+
+        .loadmore {
+            @include flex(center, center);
+            margin: 30px 0;
+        }
+        .swiper-wrapper {
+            display: flex;
+        }
+
+        .swiper-slide {
+            width: 18%;
+            flex-shrink: 0;
+            height: 100%;
+
+            @include tablet {
+                width: 30%;
+            }
+
+            @include mobile {
+                width: 40%;
+            }
+        }
+    }
+}

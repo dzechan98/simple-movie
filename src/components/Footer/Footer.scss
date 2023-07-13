@@ -1,0 +1,52 @@
+@use "../../scss" as *;
+
+.footer {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    padding: 50px 0;
+    &__wrap-logo {
+        @include flex(center, center);
+        margin-bottom: 40px;
+        img {
+            width: 120px;
+
+            @include mobile {
+                width: 90px;
+            }
+        }
+    }
+
+    &__wrap-info {
+        @include flex(unset, space-between);
+        flex-wrap: wrap;
+        gap: 40px 0;
+    }
+
+    &__wrap-item {
+        font-size: 2.5rem;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+
+        gap: 20px 0;
+
+        p {
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                color: red;
+            }
+        }
+
+        @include tablet {
+            font-size: 2rem;
+        }
+
+        @include mobile {
+            font-size: 1.6rem;
+            gap: 10px 0;
+        }
+    }
+}

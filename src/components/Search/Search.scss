@@ -1,0 +1,24 @@
+@use "../../scss" as *;
+
+.search-input {
+    width: 55%;
+    background-color: $black;
+    @include flex(center, space-between);
+    border-radius: 92px;
+    gap: 0 30px;
+    @include mobile {
+        width: 100%;
+        gap: 0 15px;
+    }
+    input {
+        margin-left: 20px;
+        font-size: 1.8rem;
+        background-color: transparent;
+        width: 80%;
+        color: $white;
+
+        @include mobile {
+            font-size: 1.4rem;
+        }
+    }
+}
