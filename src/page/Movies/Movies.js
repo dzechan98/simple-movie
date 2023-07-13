@@ -5,7 +5,6 @@ import Search from "../../components/Search/Search";
 import Banner from "../../components/Banner/Banner";
 function Movies() {
     const [query, setQuery] = useState("");
-    console.log(query);
     return (
         <div className="movies-page">
             <Banner></Banner>

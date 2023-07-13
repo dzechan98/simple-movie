@@ -1,13 +1,14 @@
 import "./Videos.scss";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { apiConfig } from "../../api/ApiConfig";
 function Videos({ className }) {
     const { id } = useParams();
 
     const [videos, setVideos] = useState([]);
 
     useEffect(() => {
-        const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=4e44d9029b1270a757cddc766a1bcb63`;
+        const url = `${apiConfig.baseUrl}${id}/videos?api_key=${apiConfig.apiKey}`;
 
         const getVideos = async (url) => {
             try {

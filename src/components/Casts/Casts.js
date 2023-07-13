@@ -1,3 +1,4 @@
+import { apiConfig } from "../../api/ApiConfig";
 import "./Casts.scss";
 
 import { useState, useEffect } from "react";
@@ -5,7 +6,7 @@ function Casts({ id }) {
     const [casts, setCasts] = useState([]);
 
     useEffect(() => {
-        const url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=4e44d9029b1270a757cddc766a1bcb63`;
+        const url = `${apiConfig.baseUrl}${id}/credits?api_key=${apiConfig.apiKey}`;
         const getCasts = async (url) => {
             try {
                 const res = await fetch(url);
@@ -27,7 +28,7 @@ function Casts({ id }) {
                     casts.splice(0, 5).map((item) => (
                         <div className="cast-info" key={item.id}>
                             <img
-                                src={`https://image.tmdb.org/t/p/w500/${item?.profile_path}`}
+                                src={`${apiConfig.w500Image}${item?.profile_path}`}
                                 alt=""
                             />
                             <h3>{item?.name}</h3>

@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
+import { apiConfig } from "../../api/ApiConfig";
 
 function Poster() {
     const [movies, setMovies] = useState([]);
     useEffect(() => {
-        const url =
-            "https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63";
+        const url = `${apiConfig.baseUrl}popular?api_key=${apiConfig.apiKey}`;
         const getMovies = async (url) => {
             const res = await fetch(url);
             const data = await res.json();
@@ -37,7 +37,7 @@ function Poster() {
                             <div
                                 className="poster__img"
                                 style={{
-                                    backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')`,
+                                    backgroundImage: `url('${apiConfig.orginalImage}${movie.backdrop_path}')`,
                                 }}
                             >
                                 <div className="container ">

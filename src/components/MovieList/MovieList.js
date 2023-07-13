@@ -4,16 +4,17 @@ import Button from "../Button/Button";
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
+import { apiConfig } from "../../api/ApiConfig";
 
 function MovieList({ type, similar, id, grid, query = "" }) {
     const [movieList, setMoviList] = useState([]);
     const [page, setPage] = useState(1);
     useEffect(() => {
-        let url = `https://api.themoviedb.org/3/movie/${type}?api_key=4e44d9029b1270a757cddc766a1bcb63&page=${page}`;
+        let url = `${apiConfig.baseUrl}${type}?api_key=${apiConfig.apiKey}&page=${page}`;
         if (similar) {
-            url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=4e44d9029b1270a757cddc766a1bcb63`;
+            url = `${apiConfig.baseUrl}${id}/similar?api_key=${apiConfig.apiKey}`;
         } else if (query !== "") {
-            url = `https://api.themoviedb.org/3/search/movie?api_key=4e44d9029b1270a757cddc766a1bcb63&query=${query}`;
+            url = `${apiConfig.baseUrl}?api_key=${apiConfig.apiKey}&query=${query}`;
         }
         const getMovieList = async (url) => {
             const res = await fetch(url);

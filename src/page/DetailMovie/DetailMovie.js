@@ -5,6 +5,7 @@ import Button from "../../components/Button/Button";
 import Casts from "../../components/Casts/Casts";
 import Videos from "../../components/Videos/Videos";
 import Similar from "../../components/Similar/Similar";
+import { apiConfig } from "../../api/ApiConfig";
 function DetailMovie() {
     const { id } = useParams();
     const [movie, setMovie] = useState({});
@@ -13,7 +14,7 @@ function DetailMovie() {
     );
 
     useEffect(() => {
-        const url = ` https://api.themoviedb.org/3/movie/${id}?api_key=4e44d9029b1270a757cddc766a1bcb63`;
+        const url = ` ${apiConfig.baseUrl}${id}?api_key=${apiConfig.apiKey}`;
         const getMovie = async (url) => {
             try {
                 const res = await fetch(url);
@@ -41,14 +42,14 @@ function DetailMovie() {
                     <div
                         className="movie__banner"
                         style={{
-                            backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
+                            backgroundImage: `url("${apiConfig.orginalImage}${movie?.backdrop_path}")`,
                         }}
                     ></div>
                     <div className="movie__poster">
                         <div className="wrapper">
                             <img
                                 className="movie__poster-img"
-                                src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
+                                src={`${apiConfig.w500Image}${movie?.poster_path}`}
                                 alt=""
                             />
                             <div className="movie__poster__content">
