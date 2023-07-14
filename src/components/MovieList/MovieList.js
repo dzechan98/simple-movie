@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 import { apiConfig } from "../../api/ApiConfig";
+import "swiper/css";
 
 function MovieList({ type, similar, id, grid, query = "" }) {
     const [movieList, setMoviList] = useState([]);
@@ -80,7 +81,7 @@ function MovieList({ type, similar, id, grid, query = "" }) {
                 ) : (
                     <Swiper
                         grabCursor={true}
-                        spaceBetween={20}
+                        spaceBetween={10}
                         slidesPerView={"auto"}
                     >
                         {movieList.length > 0 &&

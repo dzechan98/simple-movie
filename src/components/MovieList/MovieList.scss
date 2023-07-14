@@ -37,18 +37,9 @@
             @include flex(center, center);
             margin: 30px 0;
         }
-        .swiper {
-            overflow: hidden;
-        }
-        .swiper-wrapper {
-            display: flex;
-        }
 
         .swiper-slide {
             width: 18%;
-            flex-shrink: 0;
-            height: 100%;
-
             @include tablet {
                 width: 30%;
             }

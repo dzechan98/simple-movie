@@ -8,6 +8,7 @@
     border-radius: 32px;
     margin-bottom: 20px;
     position: relative;
+    user-select: none;
     @include tablet {
         height: 300px;
     }
