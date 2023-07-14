@@ -10,7 +10,9 @@
         background-size: cover;
         background-position: center;
         position: relative;
-
+        @include tablet {
+            height: 90vh;
+        }
         @include mobile {
             padding: 30% 0;
         }

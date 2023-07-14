@@ -6,26 +6,15 @@ import Casts from "../../components/Casts/Casts";
 import Videos from "../../components/Videos/Videos";
 import Similar from "../../components/Similar/Similar";
 import { apiConfig } from "../../api/ApiConfig";
+import { useFetch } from "../../hooks/useFetch";
 function DetailMovie() {
     const { id } = useParams();
     const [movie, setMovie] = useState({});
     const [isTablet, setIsTablet] = useState(
         window.innerWidth > 1023 ? false : true
     );
-
-    useEffect(() => {
-        const url = ` ${apiConfig.baseUrl}${id}?api_key=${apiConfig.apiKey}`;
-        const getMovie = async (url) => {
-            try {
-                const res = await fetch(url);
-                const data = await res.json();
-                setMovie(data ?? {});
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getMovie(url);
-    }, []);
+    const url = ` ${apiConfig.baseUrl}${id}?api_key=${apiConfig.apiKey}`;
+    useFetch(url, setMovie);
 
     useEffect(() => {
         const handleResize = () => {

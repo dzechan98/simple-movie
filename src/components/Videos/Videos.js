@@ -1,32 +1,19 @@
 import "./Videos.scss";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { apiConfig } from "../../api/ApiConfig";
+import { useFetch } from "../../hooks/useFetch";
 function Videos({ className }) {
     const { id } = useParams();
 
     const [videos, setVideos] = useState([]);
-
-    useEffect(() => {
-        const url = `${apiConfig.baseUrl}${id}/videos?api_key=${apiConfig.apiKey}`;
-
-        const getVideos = async (url) => {
-            try {
-                const res = await fetch(url);
-                const data = await res.json();
-                setVideos(data.results ?? []);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getVideos(url);
-    }, []);
-    console.log(videos);
+    const url = `${apiConfig.baseUrl}${id}/videos?api_key=${apiConfig.apiKey}`;
+    useFetch(url, setVideos);
     return (
         <div className={`videos container ${className}`}>
             {videos.length > 0 &&
                 videos.slice(0, 5).map((video) => (
-                    <>
+                    <div className="video-wrap" key={video.id}>
                         <h2 className="video-title">{video?.name}</h2>
                         <div className="video" key={video?.id}>
                             <iframe
@@ -37,7 +24,7 @@ function Videos({ className }) {
                                 allowFullScreen
                             ></iframe>
                         </div>
-                    </>
+                    </div>
                 ))}
         </div>
     );

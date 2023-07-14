@@ -1,24 +1,12 @@
 import { apiConfig } from "../../api/ApiConfig";
 import "./Casts.scss";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useFetch } from "../../hooks/useFetch";
 function Casts({ id }) {
     const [casts, setCasts] = useState([]);
-
-    useEffect(() => {
-        const url = `${apiConfig.baseUrl}${id}/credits?api_key=${apiConfig.apiKey}`;
-        const getCasts = async (url) => {
-            try {
-                const res = await fetch(url);
-                const data = await res.json();
-
-                setCasts(data.cast ?? []);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getCasts(url);
-    }, []);
+    const url = `${apiConfig.baseUrl}${id}/credits?api_key=${apiConfig.apiKey}`;
+    useFetch(url, setCasts);
 
     return (
         <div className="casts">
