@@ -15,7 +15,7 @@ function MovieList({ type, similar, id, grid, query = "" }) {
         if (similar) {
             url = `${apiConfig.baseUrl}${id}/similar?api_key=${apiConfig.apiKey}`;
         } else if (query !== "") {
-            url = `${apiConfig.baseUrl}?api_key=${apiConfig.apiKey}&query=${query}`;
+            url = `https://api.themoviedb.org/3/search/movie?api_key=${apiConfig.apiKey}&query=${query}`;
         }
         const getMovieList = async (url) => {
             const res = await fetch(url);
